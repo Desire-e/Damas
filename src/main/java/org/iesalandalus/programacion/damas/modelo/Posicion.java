@@ -6,10 +6,16 @@ public class Posicion {
     private char columna;
 
 
-
+    //Constructor con parámetros: estado inicial se da cuando construimos objeto
     public Posicion(int fila, char columna){
         setFila(fila);
         setColumna(columna);
+    }
+
+    //Constructor copia
+    public Posicion(Posicion p){
+        setFila(p.getFila());
+        setColumna(p.getColumna());
     }
 
 
