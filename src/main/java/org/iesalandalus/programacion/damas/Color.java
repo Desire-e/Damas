@@ -5,5 +5,7 @@ public enum Color {
 
     private String cadenaAMostrar;
 
-
+    private Color (String color) {
+        cadenaAMostrar = color;
+    }
 }
