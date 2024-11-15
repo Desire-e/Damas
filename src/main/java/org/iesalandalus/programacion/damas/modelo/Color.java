@@ -5,12 +5,12 @@ public enum Color {
 
     private String cadenaAMostrar;
 
-    private Color (String color) {
-        cadenaAMostrar = color;
+    private Color (String cadenaAMostrar) {
+        this.cadenaAMostrar = cadenaAMostrar;
     }
 
     @Override
     public String toString() {
-        return "Color{" + cadenaAMostrar + "}";
+        return cadenaAMostrar;
     }
 }

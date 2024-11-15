@@ -9,13 +9,12 @@ public class Dama {
     //getters y setters del tipo enum
     public Color getColor(){
         return color;
-
     }
     private void setColor(Color color) {
-        if (color != Color.BLANCO || color != Color.NEGRO) {
-            throw new IllegalArgumentException("ERROR: eL color solo puede ser Blanco o Negro");
-        } else
-            this.color=color;
+        if (color == null){
+            throw new NullPointerException("El color es nulo.");
+        }
+        this.color = color;
     }
 
     //getters y setters del tipo Posicion
@@ -23,11 +22,15 @@ public class Dama {
         return posicion;
     }
     public void setPosicion(Posicion posicion){
-        this.posicion=posicion;
-        //COMPROBAR VALIDEZ? TIPO DE EXCEPCION?
+        if (posicion == null){
+            throw new NullPointerException("La posición es nula.");
+        }
+        this.posicion = posicion;
     }
 
-
-
+    /*
+    damaBlanca = new Dama(Color.BLANCO);
+    damaNegra = new Dama(Color.NEGRO);
+    */
 
 }

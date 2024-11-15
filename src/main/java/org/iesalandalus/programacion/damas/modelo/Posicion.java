@@ -25,7 +25,8 @@ public class Posicion {
     public int getFila() { return fila; }
     private void setFila(int fila){
         if (fila<1 || fila>8){
-            throw new IllegalArgumentException("ERROR: la fila como mínimo debe ser 1, como máximo 8");
+            //Ex. no comprobada
+            throw new IllegalArgumentException("ERROR: la fila como mínimo debe ser 1, como máximo 8.");
         }
 
         this.fila = fila;
@@ -37,8 +38,9 @@ public class Posicion {
                 || columna == 'f' || columna == 'g' || columna == 'h'){
             this.columna = columna;
 
-        } else
-            throw new IllegalArgumentException("ERROR: La columna debe ser desde la 'a' hasta la 'h'");
+        } else {
+            throw new IllegalArgumentException("ERROR: La columna debe ser desde la 'a' hasta la 'h'.");
+        }
     }
 
 
