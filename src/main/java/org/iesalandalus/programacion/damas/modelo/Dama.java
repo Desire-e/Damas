@@ -172,7 +172,6 @@ public class Dama {
         return "Dama{" +
                 "color=" + color +
                 ", posicion=" + posicion +
-                ", esDamaEspecial=" + esDamaEspecial +
                 '}';
     }
 
