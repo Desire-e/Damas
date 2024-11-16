@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.damas.modelo;
 
+import javax.naming.OperationNotSupportedException;
+
 public class Dama {
     private Color color;
     private Posicion posicion;
@@ -18,9 +20,12 @@ public class Dama {
 
     //Constructor copia
         // Según lo que reciba este constructor, será    Color color = Color.BLANCO o Color.NEGRO;
-        //Quizás habrá que crear un menú para elegir color, donde este pase el parámetro que significará
-        // un color u otro, que será pasado a este constructor.
     public Dama (Color color){
+        /*
+        if (color == null) {
+            throw new NullPointerException("El color no puede ser nulo.");
+        }
+         */
         setColor(color);
         setPosicion(crearPosicionInicial());
         this.esDamaEspecial = false;
@@ -29,33 +34,34 @@ public class Dama {
 
 
 
-    //getter y setter de variable tipo Color
+    //Getter y setter de variable tipo Color
     public Color getColor(){
         return color;
     }
     private void setColor(Color color) {
         if (color == null){
-            throw new IllegalArgumentException("El color es nulo.");
+            throw new NullPointerException("El color es nulo.");
         }
         this.color = color;
     }
 
-    //getter y setter de variable tipo Posicion
+    //Getter y setter de variable tipo Posicion
     public Posicion getPosicion(){
-        return posicion; /* return new Posicion(posicion); */
+        return posicion;
+        /* return new Posicion(posicion); */
     }
     public void setPosicion(Posicion posicion){
         if (posicion == null){
-            throw new IllegalArgumentException("La posición es nula.");
+            throw new NullPointerException("La posición es nula.");
         }
-        this.posicion = posicion; /* this.posicion = new Posicion(posicion); */
+        this.posicion = posicion;
+        /* this.posicion = new Posicion(posicion); */
     }
 
 
 
 
     // Método para generar posición inicial
-
     private Posicion crearPosicionInicial() {
         // Definir las filas iniciales dependiendo del color de la dama (de 1 a 8)
         int filaInicial;
@@ -95,45 +101,79 @@ public class Dama {
 
 
 
-    /* Crea el método mover que acepte como parámetros una Direccion y el número de pasos que se moverá.
-    Deberás tener en cuenta las siguientes restricciones: Realiza un commit.
-        * La dirección no puede ser nula o de lo contrario debe lanzar una excepción adecuada
-          (NullPointerException o IllegalArgumentException) con el mensaje adecuado.
-            * Si la dama todavía no se ha convertido en dama especial, solamente podrá moverse en un dirección
-              que le permita avanzar en el tablero y nunca retroceder. Noreste o Noroeste (si es una dama blanca)
-              y Sureste o Suroeste (si es una dama negra).
-        * El número de casillas que se mueve la dama deberá ser un número entero positivo, >=que 1.
-            * Si la dama todavía no se ha convertido en dama especial, el numero de casillas que se mueve será 1.
-        * Si la dama llega al extremo del tablero (fila 8 si es blanca o fila 1 si es negra) se convertirá
-          en dama especial modificando el atributo esDamaEspecial y poniéndolo al verdadero.
-        * Si no puede realizar dicho movimiento, debido a que la dama se sale del tablero o que no está
-          permitido porque todavía no es una dama especial, se debe lanzar una excepción del tipo
-          OperationNotSupportedException con un mensaje adecuado y no modificarán los atributos de la dama. Si
-          el movimiento es válido, se modificará la posición actual de la dama.*/
-    public void mover(){
+    public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
+        //Dirección no puede ser nula
+        if (direccion == null){
+            throw new NullPointerException("La dirección es nula.");
+        }
 
+        //Pasos para dama que esDamaEspecial
+        if (pasos < 1) {
+            throw new IllegalArgumentException("El número de pasos debe ser mayor o igual a 1");
+        }
 
+        //Pasos para dama que NO esDamaEspecial
+        if (!esDamaEspecial && pasos != 1) {
+            throw new OperationNotSupportedException("Las damas no especiales solo pueden moverse un paso.");
+        }
+
+        //Dirección cuando la dama NO esDamaEspecial, teniendo en cuenta el color
+        if (!esDamaEspecial) {
+            if (color == Color.BLANCO && (direccion == Direccion.SURESTE || direccion == Direccion.SUROESTE)) {
+                throw new  OperationNotSupportedException("Una dama blanca no especial no puede moverse hacia atrás.");
+            }
+            if (color == Color.NEGRO && (direccion == Direccion.NORESTE || direccion == Direccion.NOROESTE)) {
+                throw new OperationNotSupportedException("Una dama negra no especial no puede moverse hacia adelante.");
+            }
+        }
+
+        //Cambios de valor en fila y columna según dirección indicada y nº de pasos.
+        int siguienteFila = posicion.getFila();
+        char siguienteColumna = posicion.getColumna();
+
+        switch(direccion) {
+            case NORESTE -> {
+                siguienteFila += pasos;
+                siguienteColumna += pasos;
+            }
+            case NOROESTE -> {
+                siguienteFila += pasos;
+                siguienteColumna -= pasos;
+            }
+            case SURESTE -> {
+                siguienteFila -= pasos;
+                siguienteColumna += pasos;
+            }
+            case SUROESTE -> {
+                siguienteFila -= pasos;
+                siguienteColumna -= pasos;
+            }
+        }
+
+        //Paso de dama a esDamaEspecial
+        if (color == Color.BLANCO && siguienteFila == 8 || color == Color.NEGRO && siguienteFila == 1){
+            esDamaEspecial = true;
+        }
+
+        if (siguienteFila < 1 || siguienteFila > 8 || siguienteColumna < 'a' || siguienteColumna > 'h'){
+            throw new OperationNotSupportedException("La dama se sale del tablero. Las filas van de 1 a 8 y las columnas de 'a' hasta 'h'.");
+        }
+
+        // Actualizar posición mientras sea válido.
+        this.posicion = new Posicion(siguienteFila, siguienteColumna);
     }
 
 
 
-/*
-    //Probar métodos
+
+    //Método toString
     @Override
     public String toString() {
         return "Dama{" +
                 "color=" + color +
                 ", posicion=" + posicion +
+                ", esDamaEspecial=" + esDamaEspecial +
                 '}';
     }
-
-    public static void main(String[] args) {
-        Dama dama = new Dama();
-        System.out.println("La posición y color de la dama es:" + dama);
-    }
-*/
-
-
-
 
 }

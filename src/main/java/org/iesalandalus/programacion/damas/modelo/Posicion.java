@@ -18,6 +18,11 @@ public class Posicion {
     public Posicion(Posicion posicion){
         setFila(posicion.getFila());
         setColumna(posicion.getColumna());
+        /*
+        if (otra == null) {
+            throw new NullPointerException("No se puede copiar una posición nula.");
+        }
+        */
     }
 
 
@@ -68,7 +73,7 @@ public class Posicion {
 
     @Override
     public String toString() {
-        return "Posicion{" +
+        return "{"+
                 "fila=" + fila +
                 ", columna=" + columna +
                 '}';
