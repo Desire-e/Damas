@@ -26,7 +26,7 @@ public class Posicion {
     private void setFila(int fila){
         if (fila<1 || fila>8){
             //Ex. no comprobada
-            throw new IllegalArgumentException("ERROR: la fila como mínimo debe ser 1, como máximo 8.");
+            throw new IllegalArgumentException("la fila como mínimo debe ser 1, como máximo 8.");
         }
 
         this.fila = fila;
@@ -34,13 +34,11 @@ public class Posicion {
 
     public char getColumna() { return columna; }
     private void setColumna(char columna){
-        if (columna == 'a' || columna == 'b' || columna == 'c' || columna == 'd' || columna == 'e'
-                || columna == 'f' || columna == 'g' || columna == 'h'){
-            this.columna = columna;
-
-        } else {
-            throw new IllegalArgumentException("ERROR: La columna debe ser desde la 'a' hasta la 'h'.");
+        if (columna < 'a' || columna > 'h'){
+            throw new IllegalArgumentException("La columna debe ser desde la 'a' hasta la 'h'.");
         }
+
+        this.columna = columna;
     }
 
 
@@ -54,10 +52,10 @@ public class Posicion {
         /* Si 'o' no tiene valor, o la clase del objeto en cuestión (this) es != de la clase del objeto o,
         devuelve false. (Es falso que sean el mismo objeto). */
 
-        Posicion other = (Posicion) o;
-        /* Convierte 'o' de tipo Object a tipo Posicion, y asigna su valor a objeto 'other' tipo Posicion */
-        return fila == other.fila && columna == other.columna;
-        /* Devuelve fila del objeto other, y columna del objeto other */
+        Posicion posicion = (Posicion) o;
+        /* Convierte 'o' de tipo Object a tipo Posicion, y asigna su valor a objeto 'posicion' tipo Posicion */
+        return fila == posicion.fila && columna == posicion.columna;
+        /* Devuelve fila del objeto posicion, y columna del objeto posicion */
     }
 
     @Override
