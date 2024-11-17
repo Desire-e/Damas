@@ -3,7 +3,6 @@ package org.iesalandalus.programacion.damas.modelo;
 import java.util.Objects;
 
 public class Posicion {
-
     private int fila;
     private char columna;
 
@@ -16,13 +15,11 @@ public class Posicion {
 
     //Constructor copia
     public Posicion(Posicion posicion){
+        if (posicion == null) {
+            throw new NullPointerException("ERROR: No es posible copiar una posición nula.");
+        }
         setFila(posicion.getFila());
         setColumna(posicion.getColumna());
-        /*
-        if (otra == null) {
-            throw new NullPointerException("No se puede copiar una posición nula.");
-        }
-        */
     }
 
 
@@ -31,7 +28,7 @@ public class Posicion {
     private void setFila(int fila){
         if (fila<1 || fila>8){
             //Ex. no comprobada
-            throw new IllegalArgumentException("la fila como mínimo debe ser 1, como máximo 8.");
+            throw new IllegalArgumentException("ERROR: Fila no válida.");
         }
 
         this.fila = fila;
@@ -40,7 +37,7 @@ public class Posicion {
     public char getColumna() { return columna; }
     private void setColumna(char columna){
         if (columna < 'a' || columna > 'h'){
-            throw new IllegalArgumentException("La columna debe ser desde la 'a' hasta la 'h'.");
+            throw new IllegalArgumentException("ERROR: Columna no válida.");
         }
 
         this.columna = columna;
@@ -73,9 +70,6 @@ public class Posicion {
 
     @Override
     public String toString() {
-        return "{"+
-                "fila=" + fila +
-                ", columna=" + columna +
-                '}';
+        return "fila=" + fila + ", columna=" + columna;
     }
 }

@@ -40,7 +40,7 @@ public class Dama {
     }
     private void setColor(Color color) {
         if (color == null){
-            throw new NullPointerException("El color es nulo.");
+            throw new NullPointerException("ERROR: El color no puede ser nulo.");
         }
         this.color = color;
     }
@@ -108,7 +108,7 @@ public class Dama {
     public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
         //Dirección no puede ser nula
         if (direccion == null){
-            throw new NullPointerException("La dirección es nula.");
+            throw new NullPointerException("ERROR: La dirección no puede ser nula.");
         }
 
         //Pasos para dama que esDamaEspecial
@@ -118,16 +118,16 @@ public class Dama {
 
         //Pasos para dama que NO esDamaEspecial
         if (!esDamaEspecial && pasos != 1) {
-            throw new OperationNotSupportedException("Las damas no especiales solo pueden moverse un paso.");
+            throw new OperationNotSupportedException("ERROR: Las damas normales solo se pueden mover 1 casilla.");
         }
 
         //Dirección cuando la dama NO esDamaEspecial, teniendo en cuenta el color
         if (!esDamaEspecial) {
             if (color == Color.BLANCO && (direccion == Direccion.SURESTE || direccion == Direccion.SUROESTE)) {
-                throw new  OperationNotSupportedException("Una dama blanca no especial no puede moverse hacia atrás.");
+                throw new  OperationNotSupportedException("ERROR: Movimiento no permitido.");
             }
             if (color == Color.NEGRO && (direccion == Direccion.NORESTE || direccion == Direccion.NOROESTE)) {
-                throw new OperationNotSupportedException("Una dama negra no especial no puede moverse hacia adelante.");
+                throw new OperationNotSupportedException("ERROR: Movimiento no permitido.");
             }
         }
 
@@ -173,10 +173,7 @@ public class Dama {
     //Método toString
     @Override
     public String toString() {
-        return "Dama{" +
-                "color=" + color +
-                ", posicion=" + posicion +
-                '}';
+        return "color=" + color + ", posicion=(" + posicion + ")";
     }
 
 }
