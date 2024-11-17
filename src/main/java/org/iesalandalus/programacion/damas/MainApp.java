@@ -11,7 +11,7 @@ public class MainApp {
 	|* Crea el atributo de clase dama. Realiza un commit.
     //* Crea el método ejecutarOpcion que dependiendo de la opción pasada como parámetro, actuará en consecuencia.
       Realiza un commit.
-    * Crea el método crearDamaDefecto que asignará al atributo de clase dama una nueva instancia de una dama
+    |* Crea el método crearDamaDefecto que asignará al atributo de clase dama una nueva instancia de una dama
       creada con el constructor por defecto. Realiza un commit.
     * Crea el método crearDamaColor que asignará al atributo de clase dama una nueva instancia de una dama
       creado con el constructor al que le pasamos el color. Realiza un commit.
@@ -37,6 +37,10 @@ public class MainApp {
 
     private void crearDamaDefecto(){
         this.dama = new Dama();
+    }
+
+    private void crearDamaColor(){
+        this.dama = new Dama(Consola.elegirColor());
     }
 
 
