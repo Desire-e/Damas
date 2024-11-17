@@ -85,5 +85,14 @@ public class MainApp {
         }
     }
 
+    private void mostrarDama(){
+        if (dama == null ){
+            System.out.println("No hay dama creada.");
+        } else
+            System.out.println("Dama creada:");
+            System.out.println("- Color: " + dama.getColor());
+            System.out.println("- Posicion: " + dama.getPosicion());
+    }
+
 
 }
