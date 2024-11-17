@@ -18,7 +18,7 @@ public class MainApp {
     |* Crea el método mover que mostrará un menú con las posibles direcciones. Nos preguntará por la dirección a
       mover. Si la dama es especial, nos también preguntará el número de casillas que queremos mover. Moverá la
       dama a la nueva posición, si es posible. Realiza un commit.
-    * Crea el método mostrarDama que nos mostrará la información de la dama (color y posición) si ésta está
+    |* Crea el método mostrarDama que nos mostrará la información de la dama (color y posición) si ésta está
       creado. De lo contrario nos informará de ello.
     * Crea el método main que será el método principal de nuestra aplicación y deberá iterar mostrando el menú
       principal, pidiendo la opción y ejecutándola mientras no elijamos salir, en cuyo caso mostrará un mensaje
@@ -29,7 +29,16 @@ public class MainApp {
 
     private static Dama dama;
 
-    private void ejecutarOpcion(int opcion){
+    public static void main (String[] args){
+        do {
+            Consola.mostrarMenu();
+            Consola.elegirOpcionMenu();
+            ejecutarOpcion(Consola.elegirOpcionMenu());
+        } while(Consola.elegirOpcionMenu() != 4);
+
+    }
+
+    private static void ejecutarOpcion(int opcion){
         Consola.mostrarMenu();
         opcion = Consola.elegirOpcionMenu();
         switch (opcion){
@@ -45,17 +54,17 @@ public class MainApp {
     }
 
 
-    private void crearDamaDefecto(){
-        this.dama = new Dama();
+    private static void crearDamaDefecto(){
+        dama = new Dama();
     }
 
 
-    private void crearDamaColor(){
-        this.dama = new Dama(Consola.elegirColor());
+    private static void crearDamaColor(){
+        dama = new Dama(Consola.elegirColor());
     }
 
 
-    private void mover() {
+    private static void mover() {
         if (dama == null) {
             throw new NullPointerException("Dama nula. Debes de crear primero una dama.");
         }
@@ -85,7 +94,7 @@ public class MainApp {
         }
     }
 
-    private void mostrarDama(){
+    private static void mostrarDama(){
         if (dama == null ){
             System.out.println("No hay dama creada.");
         } else
