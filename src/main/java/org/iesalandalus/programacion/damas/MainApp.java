@@ -28,20 +28,32 @@ public class MainApp {
     */
 
     private static Dama dama;
+
     private void ejecutarOpcion(int opcion){
         Consola.mostrarMenu();
         opcion = Consola.elegirOpcionMenu();
-
-
+        switch (opcion){
+            case 1:
+                crearDamaDefecto();
+            case 2:
+                crearDamaColor();
+            case 3:
+                mover();
+            case 4:
+                Consola.despedirse();
+        }
     }
+
 
     private void crearDamaDefecto(){
         this.dama = new Dama();
     }
 
+
     private void crearDamaColor(){
         this.dama = new Dama(Consola.elegirColor());
     }
+
 
     private void mover() {
         if (dama == null) {
