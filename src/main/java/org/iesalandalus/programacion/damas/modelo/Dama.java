@@ -58,6 +58,10 @@ public class Dama {
         /* this.posicion = new Posicion(posicion); */
     }
 
+    public boolean getEsDamaEspecial(){
+        return esDamaEspecial;
+    }
+
 
 
 
