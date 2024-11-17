@@ -29,6 +29,23 @@ public class Consola {
         return opcion;
     }
 
+    public static String elegirOpcion(){
+        int opcionColor;
+        do{
+            System.out.println("====================================================================");
+            System.out.println("Elige un color: ");
+            System.out.println("1. Blanco");
+            System.out.println("2. Negro");
+            opcionColor=Entrada.entero();
+        }while(opcionColor<1 || opcionColor>2);
+
+        if(opcionColor == 1){
+            return "Dama blanca.";
+        } else {
+            return "Dama negra.";
+        }
+    }
+
 
 
 
