@@ -13,9 +13,9 @@ public class MainApp {
       Realiza un commit.
     |* Crea el método crearDamaDefecto que asignará al atributo de clase dama una nueva instancia de una dama
       creada con el constructor por defecto. Realiza un commit.
-    * Crea el método crearDamaColor que asignará al atributo de clase dama una nueva instancia de una dama
+    |* Crea el método crearDamaColor que asignará al atributo de clase dama una nueva instancia de una dama
       creado con el constructor al que le pasamos el color. Realiza un commit.
-    * Crea el método mover que mostrará un menú con las posibles direcciones. Nos preguntará por la dirección a
+    |* Crea el método mover que mostrará un menú con las posibles direcciones. Nos preguntará por la dirección a
       mover. Si la dama es especial, nos también preguntará el número de casillas que queremos mover. Moverá la
       dama a la nueva posición, si es posible. Realiza un commit.
     * Crea el método mostrarDama que nos mostrará la información de la dama (color y posición) si ésta está
@@ -41,6 +41,36 @@ public class MainApp {
 
     private void crearDamaColor(){
         this.dama = new Dama(Consola.elegirColor());
+    }
+
+    private void mover() {
+        if (dama == null) {
+            throw new NullPointerException("Dama nula. Debes de crear primero una dama.");
+        }
+
+        Consola.mostrarMenuDirecciones();
+
+        Direccion direccion = Consola.elegirDireccion();
+        int pasos;
+        if (dama.getEsDamaEspecial()) {
+            pasos = Consola.elegirPasos();
+        } else {
+            pasos = 1;
+        }
+
+        try {
+            dama.mover(direccion, pasos);
+
+        } catch(OperationNotSupportedException e){
+            //Movimiento invalido: pasos de dama especial / sale del tablero
+            System.out.println("ERROR: " + e.getMessage());
+        } catch(IllegalArgumentException e){
+            //Parámetro pasos incorrecto
+            System.out.println("ERROR: " + e.getMessage());
+        } catch(NullPointerException e){
+            //Parámetro direccion nulo
+            System.out.println("ERROR: " + e.getMessage());
+        }
     }
 
 
