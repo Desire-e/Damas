@@ -9,7 +9,7 @@ public class MainApp {
 	/*
 	    * MÉTODOS PRIVADOS MENOS MAIN
 	|* Crea el atributo de clase dama. Realiza un commit.
-    * Crea el método ejecutarOpcion que dependiendo de la opción pasada como parámetro, actuará en consecuencia.
+    //* Crea el método ejecutarOpcion que dependiendo de la opción pasada como parámetro, actuará en consecuencia.
       Realiza un commit.
     * Crea el método crearDamaDefecto que asignará al atributo de clase dama una nueva instancia de una dama
       creada con el constructor por defecto. Realiza un commit.
@@ -30,9 +30,13 @@ public class MainApp {
     private static Dama dama;
     private void ejecutarOpcion(int opcion){
         Consola.mostrarMenu();
-        opcion=Consola.elegirOpcionMenu();
+        opcion = Consola.elegirOpcionMenu();
 
 
+    }
+
+    private void crearDamaDefecto(){
+        this.dama = new Dama();
     }
 
 
