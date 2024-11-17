@@ -19,6 +19,7 @@ public class Consola {
         System.out.println("4. Salir.");
     }
 
+    //Devuelve int
     public static String elegirOpcionMenu(){
         int opcion;
         do{
@@ -36,7 +37,8 @@ public class Consola {
             return "4. Salir.";
     }
 
-    public static String elegirOpcion(){
+    //Devuelve Color
+    public static String elegirColor(){
         int opcionColor;
         do{
             System.out.println("====================================================================");
@@ -61,6 +63,7 @@ public class Consola {
         System.out.println("4. Noreste");
     }
 
+    //Devuelve Direccion
     public static String elegirDireccion(){
         int opcionDireccion;
         do {
@@ -78,6 +81,7 @@ public class Consola {
             return "4. Noreste";
     }
 
+    //Devuelve int
     public static int elegirPasos(){
         int numeroPasos;
         do{
@@ -87,6 +91,10 @@ public class Consola {
 
         System.out.println("Número de pasos dados:");
         return numeroPasos;
+    }
+
+    public static void despedirse(){
+        System.out.println("¡Hasta pronto!");
     }
 
     /*
@@ -107,10 +115,10 @@ public class Consola {
     del menú anteriormente creado y nos pedirá que introduzcamos por teclado la opción hasta que
     ésta sea valida. Devolverá la dirección elegida. Realiza un commit.
 
-    * Crea el método elegirPasos que nos pedirá que introduzcamos por teclado el número de casillas,
+    |* Crea el método elegirPasos que nos pedirá que introduzcamos por teclado el número de casillas,
     el cual deberá ser un número entero positivo mayor o igual que 1.
 
-    * Crea el método despedirse que mostrará un mensaje de despedida al salir de nuestra aplicación.
+    |* Crea el método despedirse que mostrará un mensaje de despedida al salir de nuestra aplicación.
 
      */
 
