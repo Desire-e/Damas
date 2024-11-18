@@ -4,6 +4,8 @@ import org.iesalandalus.programacion.damas.modelo.Color;
 import org.iesalandalus.programacion.damas.modelo.Direccion;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
+import java.sql.SQLOutput;
+
 public class Consola {
     private Consola(){
 
@@ -27,22 +29,19 @@ public class Consola {
             System.out.println("Elige una opción introduciendo el número correspondiente (1-4).");
             opcion= Entrada.entero();
         } while (opcion<1 || opcion>4);
-
-        System.out.println("Opción elegida: ");
         return opcion;
     }
 
     public static Color elegirColor(){
         int opcionColor;
         do{
-            System.out.println("============================================================================================");            System.out.println("Elige un color (1-2):");
+            System.out.println("============================================================================================");
             System.out.println("1. Blanco");
             System.out.println("2. Negro");
             System.out.println("Elige un color (1-2).");
             opcionColor=Entrada.entero();
         }while(opcionColor<1 || opcionColor>2);
 
-        System.out.println("Color elegido: ");
         if(opcionColor == 1){
             return Color.BLANCO;
         } else {
@@ -65,7 +64,6 @@ public class Consola {
             opcionDireccion=Entrada.entero();
         } while(opcionDireccion<1 || opcionDireccion>4);
 
-        System.out.println("Dirección elegida:");
         if (opcionDireccion == 1){
             return Direccion.SUROESTE;
         }else if (opcionDireccion == 2){
@@ -74,6 +72,7 @@ public class Consola {
             return Direccion.NOROESTE;
         }else
             return Direccion.NORESTE;
+
     }
 
     public static int elegirPasos(){
@@ -84,7 +83,6 @@ public class Consola {
         numeroPasos=Entrada.entero();
         } while(numeroPasos < 1);
 
-        System.out.println("Número de pasos dados:");
         return numeroPasos;
     }
 

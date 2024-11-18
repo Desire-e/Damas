@@ -21,11 +21,6 @@ public class Dama {
     //Constructor copia
         // Según lo que reciba este constructor, será    Color color = Color.BLANCO o Color.NEGRO;
     public Dama (Color color){
-        /*
-        if (color == null) {
-            throw new NullPointerException("El color no puede ser nulo.");
-        }
-         */
         setColor(color);
         setPosicion(crearPosicionInicial());
         this.esDamaEspecial = false;
@@ -48,14 +43,12 @@ public class Dama {
     //Getter y setter de variable tipo Posicion
     public Posicion getPosicion(){
         return posicion;
-        /* return new Posicion(posicion); */
     }
     public void setPosicion(Posicion posicion){
         if (posicion == null){
             throw new NullPointerException("La posición es nula.");
         }
         this.posicion = posicion;
-        /* this.posicion = new Posicion(posicion); */
     }
 
     public boolean getEsDamaEspecial(){
@@ -99,7 +92,6 @@ public class Dama {
 
         Posicion posicionInicial = new Posicion(filaInicial, columnaInicial);
         return posicionInicial;
-        /*  return new Posicion(filaInicial, columnaInicial);  */
     }
 
 
