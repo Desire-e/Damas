@@ -21,6 +21,12 @@ public class Dama {
     //Constructor copia
         // Según lo que reciba este constructor, será    Color color = Color.BLANCO o Color.NEGRO;
     public Dama (Color color){
+        /* CORRECIÓN: En el constructor con parámetro, el parámetro color es un tipo referenciado y por tanto,
+           lo primero que debes comprobar es que color!=null. Si es null, debes lanzar una excepción. */
+        if (color == null){
+            throw new NullPointerException("ERROR: El color no puede ser nulo.");
+        }
+
         setColor(color);
         setPosicion(crearPosicionInicial());
         this.esDamaEspecial = false;
@@ -97,6 +103,7 @@ public class Dama {
 
 
 
+
     public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
         //Dirección no puede ser nula
         if (direccion == null){
@@ -151,12 +158,24 @@ public class Dama {
             esDamaEspecial = true;
         }
 
+
+        /* CORRECCIÓN: Sobra, la clase Posición ya comprueba esto */
+        /*
         if (siguienteFila < 1 || siguienteFila > 8 || siguienteColumna < 'a' || siguienteColumna > 'h'){
             throw new OperationNotSupportedException("La dama se sale del tablero. Las filas van de 1 a 8 y las columnas de 'a' hasta 'h'.");
         }
+        */
 
         // Actualizar posición mientras sea válido.
-        this.posicion = new Posicion(siguienteFila, siguienteColumna);
+        /* CORRECIÓN: En el método mover, la llamada al constructor de posición, debes encerrarla entre un
+           try y catch, para si llega un error de tipo IllegalArgumentException porque la dama se salga del
+           tablero, tal y como indica el enunciado de la tarea, dicha excepción debe convertirse en una
+           excepción OperationNotSupportedException. */
+        try{
+            this.posicion = new Posicion(siguienteFila, siguienteColumna);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
